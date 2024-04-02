@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6698c4db564c91ac5eabae89ac52ef, type: 3}
+  m_Name: Enemy3
+  m_EditorClassIdentifier: 
+  _entityPrefab: {fileID: 8424892103507109936, guid: 9e5b4fe52424be84b86d005c82045fea, type: 3}
+  <MaxHealth>k__BackingField: 3
+  <Damage>k__BackingField: 1
+  <Type>k__BackingField: 2

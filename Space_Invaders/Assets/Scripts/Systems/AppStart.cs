@@ -13,7 +13,7 @@ namespace Systems
             _gameState = gameState;
         }
         
-        private void Start()
+        private void Awake()
         {
             Application.targetFrameRate = 60;
             _gameState.State.Value = GameStateType.Menu;

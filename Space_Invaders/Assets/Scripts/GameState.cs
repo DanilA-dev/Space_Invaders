@@ -19,7 +19,7 @@ public class GameState
 
     public GameState()
     {
-        State.Subscribe(_ => Debug.Log($"<color=red> Change state to {_} </color>"));
+        State.Subscribe(_ => Debug.Log($"<color=yellow> Change state to {_} </color>"));
     }
     public void RestartLevel()
     {
