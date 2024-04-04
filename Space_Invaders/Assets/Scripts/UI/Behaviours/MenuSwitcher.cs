@@ -34,7 +34,7 @@ namespace UI
                     ToggleMenu(MenuType.CoreMenu);
                     break;
                 case GameStateType.Pause:
-                    ShowMenuOnTop(MenuType.PauseMenu);
+                    ToggleMenu(MenuType.PauseMenu);
                     break;
                 case GameStateType.LoseGame:
                     ToggleMenu(MenuType.LoseMenu);

@@ -9,7 +9,7 @@ namespace Data
         Type3 = 2
     }
     
-    [CreateAssetMenu(menuName = "Data/Entity/Enemy Entity")]
+    [CreateAssetMenu(menuName = "Data/Entity/Unit/Enemy Entity")]
     public class EnemyEntityData : UnitEntityData
     {
         [field:SerializeField] public EnemyType Type { get; private set; }

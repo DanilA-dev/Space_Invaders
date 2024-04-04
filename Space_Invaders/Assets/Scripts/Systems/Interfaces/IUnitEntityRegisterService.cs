@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Core.Model;
 
 namespace Systems
@@ -12,6 +13,7 @@ namespace Systems
         public void Deregister(BaseUnit unit);
 
         public T GetUnit<T>() where T : BaseUnit;
+        public List<T> GetUnits<T>() where T : BaseUnit;
     }
 }
 

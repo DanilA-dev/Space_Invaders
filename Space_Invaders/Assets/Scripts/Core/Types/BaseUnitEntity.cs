@@ -1,6 +1,8 @@
-﻿using Systems;
+﻿using System;
+using Systems;
 using Core.Interfaces;
 using Core.Model;
+using View;
 using Zenject;
 
 namespace Entity
@@ -11,10 +13,10 @@ namespace Entity
         private IUnitEntityRegisterService _unitRegisterService;
         
         public T Unit { get; private set; }
+        public abstract BaseEntityView View { get; }
         public BaseUnit UnitOwner => Unit;
-        
-        
 
+    
         [Inject]
         private void Construct(GameState gameState, IUnitEntityRegisterService unitRegisterService)
         {
@@ -39,13 +41,14 @@ namespace Entity
         public void Damage(int damageValue)
         {
             Unit.CurrentHealth.Value -= damageValue;
+            View?.InvokeDamageTween();
             if (Unit.CurrentHealth.Value <= 0)
             {
+                OnKillUnit();
                 _unitRegisterService.Deregister(Unit);
-                OnDestroyUnit();
             }
         }
-        protected virtual void OnDestroyUnit() {}
+        protected virtual void OnKillUnit() {}
         protected virtual void OnUpdate() {}
     }
 }

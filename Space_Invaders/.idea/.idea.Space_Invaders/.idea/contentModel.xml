@@ -44,6 +44,7 @@
         </e>
         <e p="Data" t="Include">
           <e p="Blasters" t="Include" />
+          <e p="Colletables" t="Include" />
           <e p="Entities" t="Include">
             <e p="Bullets" t="Include" />
             <e p="Enemies" t="Include" />
@@ -1400,12 +1401,15 @@
           <e p="Core" t="Include">
             <e p="Behaviours" t="Include">
               <e p="EnemiesMovementHandler.cs" t="Include" />
+              <e p="EnemyEntityGetService.cs" t="Include" />
+              <e p="EnemyNeighbourDetection.cs" t="Include" />
               <e p="InputMovementHandler.cs" t="Include" />
               <e p="MovementRestrictions.cs" t="Include" />
+              <e p="PlayerEntityGetService.cs" t="Include" />
             </e>
             <e p="Interfaces" t="Include">
+              <e p="IBlasterCollectableVisitor.cs" t="Include" />
               <e p="IDamagable.cs" t="Include" />
-              <e p="IEnemiesMovementHandler.cs" t="Include" />
             </e>
             <e p="Model" t="Include">
               <e p="BaseUnit.cs" t="Include" />
@@ -1414,6 +1418,7 @@
             </e>
             <e p="Signals" t="Include">
               <e p="AddScoreSignal.cs" t="Include" />
+              <e p="EnemyDestroySignal.cs" t="Include" />
             </e>
             <e p="Types" t="Include">
               <e p="BaseEntity.cs" t="Include" />
@@ -1422,6 +1427,10 @@
                 <e p="BulletEntity.cs" t="Include" />
               </e>
               <e p="BulletBlocker.cs" t="Include" />
+              <e p="Collectables" t="Include">
+                <e p="BaseCollectableEntity.cs" t="Include" />
+                <e p="BlasterCollectableEntity.cs" t="Include" />
+              </e>
               <e p="Enemy" t="Include">
                 <e p="EnemyEntity.cs" t="Include" />
               </e>
@@ -1433,7 +1442,9 @@
           <e p="Data" t="Include">
             <e p="BlasterData.cs" t="Include" />
             <e p="Entities" t="Include">
+              <e p="BlasterCollectableEntityData.cs" t="Include" />
               <e p="BulletEntityData.cs" t="Include" />
+              <e p="CollectableEntityData.cs" t="Include" />
               <e p="EnemyEntityData.cs" t="Include" />
               <e p="EntityData.cs" t="Include" />
               <e p="PlayerEntityData.cs" t="Include" />
@@ -1450,6 +1461,7 @@
           <e p="Systems" t="Include">
             <e p="AppStart.cs" t="Include" />
             <e p="Behaviour" t="Include">
+              <e p="BlasterCollectablesSpawner.cs" t="Include" />
               <e p="BulletEntitySpawner.cs" t="Include" />
               <e p="LevelHandler.cs" t="Include" />
               <e p="ScoreHandler.cs" t="Include" />
@@ -1459,7 +1471,13 @@
             </e>
             <e p="Factories" t="Include">
               <e p="BaseEntityFactory.cs" t="Include" />
-              <e p="Bullet Factory" t="Include" />
+              <e p="Bullet Factory" t="Include">
+                <e p="BulletFactory.cs" t="Include" />
+              </e>
+              <e p="CollectablesFactory" t="Include">
+                <e p="BlasterCollectableFactory.cs" t="Include" />
+                <e p="CollectableFactory.cs" t="Include" />
+              </e>
               <e p="Enemy Factory" t="Include">
                 <e p="EnemyFactory.cs" t="Include" />
               </e>
@@ -1501,7 +1519,9 @@
             </e>
           </e>
           <e p="View" t="Include">
+            <e p="BaseEntityView.cs" t="Include" />
             <e p="EnemyView.cs" t="Include" />
+            <e p="PlayerView.cs" t="Include" />
           </e>
         </e>
         <e p="Settings" t="Include" />

@@ -25,6 +25,8 @@ namespace UI
             _gameState = gameState;
             _unitRegisterService = unitEntityRegisterService;
             _gameState.OnLevelInitialized += OnLevelInit;
+            _gameState.OnLevelRestarted += OnLevelInit;
+            
             _gameState.State
                 .Where(state => state == GameStateType.Menu)
                 .Subscribe(_ => ClearHealthItems()).AddTo(gameObject);

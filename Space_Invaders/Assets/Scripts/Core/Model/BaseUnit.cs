@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using UniRx;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ namespace Core.Model
         public Vector3 Position { get; set; }
         public int MaxHealth { get; private set; }
         public int Damage { get; private set; }
+        public bool IsDead => CurrentHealth.Value <= 0;
 
         public IntReactiveProperty CurrentHealth = new IntReactiveProperty();
         
@@ -17,9 +18,8 @@ namespace Core.Model
             Position = position;
             MaxHealth = maxHealth;
             Damage = damage;
-
             CurrentHealth.Value = MaxHealth;
         }
-
+       
     }
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb7fb781dd14d908d75846bd33a7ce4, type: 3}
+  m_Name: Blaster Collectable 1
+  m_EditorClassIdentifier: 
+  _entityPrefab: {fileID: 6417817186088661388, guid: 4cfb90e720af9f145a0d07b4b0ddee7f, type: 3}
+  <DropChance>k__BackingField: 15
+  <BlasterData>k__BackingField: {fileID: 11400000, guid: 23115de845e18244080309a367084804, type: 2}
+  <FallSpeed>k__BackingField: 30

@@ -8,7 +8,5 @@ namespace System
     {
         public PlayerEntity SpawnPlayer(Vector3 pos);
         public EnemyEntity SpawnEnemy(EnemyType type, Vector3 pos);
-        public void DespawnPlayer();
-        public void DespawnEnemies();
     }
 }

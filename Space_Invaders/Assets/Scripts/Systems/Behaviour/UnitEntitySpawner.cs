@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Systems;
 using Systems.Factories;
-using Core.Behaviours;
 using Core.Model;
 using Data;
 using Entity;
@@ -18,29 +17,16 @@ namespace System
         private PlayerFactory _playerFactory;
         private EnemyFactory _enemyFactory;
         private IUnitEntityRegisterService _unitEntityRegisterService;
-        private IEnemiesMovementHandler _enemiesMovementHandler;
 
         private PlayerEntity _player;
         private List<EnemyEntity> _createdEnemies = new List<EnemyEntity>();
 
         [Inject]
-        private void Construct(DiContainer diContainer, IUnitEntityRegisterService unitEntityRegisterService,
-            IEnemiesMovementHandler enemiesMovementHandler)
+        private void Construct(DiContainer diContainer, IUnitEntityRegisterService unitEntityRegisterService)
         {
             _unitEntityRegisterService = unitEntityRegisterService;
-            _enemiesMovementHandler = enemiesMovementHandler;
             _playerFactory = new PlayerFactory(diContainer);
             _enemyFactory = new EnemyFactory(diContainer);
-        }
-
-        private void Awake()
-        {
-            _unitEntityRegisterService.OnUnitDeregister += OnRemoveUnit;
-        }
-
-        private void OnDestroy()
-        {
-            _unitEntityRegisterService.OnUnitDeregister -= OnRemoveUnit;
         }
 
         public PlayerEntity SpawnPlayer(Vector3 pos)
@@ -66,45 +52,12 @@ namespace System
                     enemyEntity.Init(enemyUnit);
                     _unitEntityRegisterService.Register(enemyUnit);
                     _createdEnemies.Add(enemyEntity);
-                    _enemiesMovementHandler.AddEnemyEntity(enemyEntity);
                     return enemyEntity;
                 }
             }
 
             return null;
         }
-
-        public void DespawnPlayer()
-        {
-            Destroy(_player?.gameObject);
-        }
-
-        public void DespawnEnemies()
-        {
-            if(_createdEnemies.Count <= 0)
-                return;
-            
-            foreach (var enemy in _createdEnemies)
-                Destroy(enemy.gameObject);
-            
-            _createdEnemies.Clear();
-        }
-        
-        private void OnRemoveUnit(BaseUnit unit)
-        {
-            TryRemoveDeadEnemy(unit);
-        }
-
-        private void TryRemoveDeadEnemy(BaseUnit unit)
-        {
-            if (_createdEnemies.Count <= 0)
-                return;
-
-            foreach (var enemyEntity in _createdEnemies)
-            {
-                if (enemyEntity.UnitOwner == unit)
-                     enemyEntity.gameObject.SetActive(false);
-            }
-        }
+      
     }
 }

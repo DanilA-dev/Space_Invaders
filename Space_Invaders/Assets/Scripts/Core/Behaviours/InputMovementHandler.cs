@@ -8,7 +8,6 @@ public class InputMovementHandler : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private MovementRestrictions _movementRestrictions;
 
-    private Transform _transform;
     private Vector2 _moveDirection;
     private IInput _input;
     
@@ -20,7 +19,6 @@ public class InputMovementHandler : MonoBehaviour
 
     private void Awake()
     {
-        _transform = transform;
         _movementRestrictions.Init();
         _input.GetInputDirection += UpdateMoveDirection;
     }
@@ -35,13 +33,12 @@ public class InputMovementHandler : MonoBehaviour
         _moveDirection = dir;
     }
     
-    public void Move(ref PlayerUnit unit)
+    public void Move(ref BaseUnit unit)
     {
-        var dir = _transform.position;
-        var clampedDir = _movementRestrictions.GetRestrictedDirection(dir);
+        var pos = unit.Position;
+        var clampedDir = _movementRestrictions.GetRestrictedDirection(pos);
         Vector3 movementDir = _moveDirection * (_speed * Time.deltaTime);
-        _transform.position = movementDir + clampedDir;
-        unit.Position = _transform.position;
+        unit.Position = movementDir + clampedDir;
     }
         
 }

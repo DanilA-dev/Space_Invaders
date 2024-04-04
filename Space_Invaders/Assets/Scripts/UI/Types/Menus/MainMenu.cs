@@ -20,7 +20,11 @@ namespace UI
         private void StartGame()
         {
             _gameState.State.Value = GameStateType.Gameplay;
-            _gameState.RestartLevel();
+            
+            if(_gameState.IsLevelCreated)
+                _gameState.RestartLevel();
+            else
+                _gameState.LevelStart();
         }
 
         public override MenuType MenuType => MenuType.MainMenu;

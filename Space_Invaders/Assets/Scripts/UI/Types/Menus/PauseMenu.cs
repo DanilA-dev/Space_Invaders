@@ -36,6 +36,7 @@ namespace UI
         private void RestartGame()
         {
             _gameState.RestartLevel();
+            _gameState.State.Value = GameStateType.Gameplay;
         }
 
         public override MenuType MenuType => MenuType.PauseMenu;

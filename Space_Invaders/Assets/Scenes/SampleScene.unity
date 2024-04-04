@@ -149,11 +149,11 @@ Transform:
   m_GameObject: {fileID: 33528403}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5, y: -0.75, z: 0}
+  m_LocalPosition: {x: -2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1034332379}
+  m_Father: {fileID: 1910265668}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &33528406
 Grid:
@@ -211,8 +211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331edf95b54b437687d7d4a61dac05d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _yEndValue: 0
+  _movingTransform: {fileID: 1910265668}
+  _speedIncreaseByTime: 0.1
+  _moveSpeed: 1
+  _moveDelay: 1
+  _yEndValue: -3.9
 --- !u!1 &221626963
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +365,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _joystickInput: {fileID: 1431485449}
   _unitEntitySpawner: {fileID: 2110227307}
-  _enemiesMovementHandler: {fileID: 181801969}
 --- !u!4 &299037959
 Transform:
   m_ObjectHideFlags: 0
@@ -1087,8 +1089,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 435079108}
-  - {fileID: 33528405}
   - {fileID: 985337746}
+  - {fileID: 1910265668}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1431485447
@@ -1171,6 +1173,7 @@ Transform:
   - {fileID: 1840243348}
   - {fileID: 2110227306}
   - {fileID: 181801968}
+  - {fileID: 1960123811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1506199100
@@ -1306,10 +1309,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219169457b34455cbbe81094a22f7243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpawnPoint: {fileID: 435079108}
-  _x: 5
-  _y: 3
-  _grid: {fileID: 33528406}
+  _playerEntityGetService:
+    _spawnPos: {fileID: 435079108}
+  _enemyEntityGetService:
+    _movingParent: {fileID: 1910265668}
+    _grid: {fileID: 33528406}
+    _x: 5
+    _y: 3
+--- !u!1 &1910265667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1910265668}
+  m_Layer: 0
+  m_Name: Enemies Moving Block
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1910265668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910265667}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 33528405}
+  m_Father: {fileID: 1034332379}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1960123810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1960123811}
+  - component: {fileID: 1960123812}
+  m_Layer: 0
+  m_Name: Blaster Collectables Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1960123811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960123810}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1482687825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1960123812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960123810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd01392f1a74054a1ac89f9559c2957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blasterDatas:
+  - {fileID: 11400000, guid: c188bef87412b5b4da2a3ed0cad12685, type: 2}
+  - {fileID: 11400000, guid: 82a341cc74fcb8e4cb42b3cad879d148, type: 2}
 --- !u!1 &1961961416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,7 +1804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5546263715035145827, guid: 23401ac09a0f2054b9e358b6bb1f6c4b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5585103925223032709, guid: 23401ac09a0f2054b9e358b6bb1f6c4b, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1950,7 +2035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8105574005764993021, guid: bc0fa4a27bea97043a6e48171b4afdfc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8717898951131923686, guid: bc0fa4a27bea97043a6e48171b4afdfc, type: 3}
       propertyPath: m_Name
@@ -1982,6 +2067,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 931733428}
     m_Modifications:
+    - target: {fileID: 739905451664216983, guid: 665256cbf4ab0b54fbe45ec35c498cc7, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 1066318664806644025, guid: 665256cbf4ab0b54fbe45ec35c498cc7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2194,6 +2283,10 @@ PrefabInstance:
     - target: {fileID: 4475464024093078326, guid: 99b05d60aa68c0c46b4ac096313287d1, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144094400379448170, guid: 99b05d60aa68c0c46b4ac096313287d1, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

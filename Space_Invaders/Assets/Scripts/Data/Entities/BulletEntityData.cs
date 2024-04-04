@@ -2,7 +2,7 @@
 
 namespace Data
 {
-    [CreateAssetMenu(menuName = "Data/Entity/Bullet", order = 0)]
+    [CreateAssetMenu(menuName = "Data/Entity/Bullet")]
     public class BulletEntityData : EntityData
     {
         [field:SerializeField] public float Speed { get; private set; }

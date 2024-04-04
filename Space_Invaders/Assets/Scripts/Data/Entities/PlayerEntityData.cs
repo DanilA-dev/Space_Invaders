@@ -2,6 +2,6 @@
 
 namespace Data
 {
-    [CreateAssetMenu(menuName = "Data/Entity/Player Entity")]
+    [CreateAssetMenu(menuName = "Data/Entity/Unit/Player Entity")]
     public class PlayerEntityData : UnitEntityData{}
 }

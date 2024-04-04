@@ -1,8 +1,10 @@
-﻿using Core.Model;
+﻿using Systems.Factories;
+using Core.Model;
 using Data;
 using Entity;
 using UnityEngine;
 using UnityEngine.Pool;
+using Zenject;
 
 namespace Systems
 {
@@ -14,13 +16,15 @@ namespace Systems
         [SerializeField] private int _bulletsMaxSize;
         
         private ObjectPool<BulletEntity> _bulletsPool;
+        private BulletFactory _bulletFactory;
         private BaseUnit _owner;
         private Vector2 _moveDirection;
         
         
-        public void Init(BaseUnit owner, Vector2 moveDirection)
+        public void Init(BaseUnit owner, Vector2 moveDirection, DiContainer diContainer)
         {
             _owner = owner;
+            _bulletFactory = new BulletFactory(diContainer);
             _moveDirection = moveDirection;
             
             _bulletsPool = new ObjectPool<BulletEntity>(CreateBullet, 
@@ -33,7 +37,7 @@ namespace Systems
         public BulletEntity Get() => _bulletsPool.Get();
         private BulletEntity CreateBullet()
         {
-            var bullet = (BulletEntity)GameObject.Instantiate(_bulletEntityData.EntityPrefab);
+            var bullet = _bulletFactory.Create(_bulletEntityData.EntityPrefab.gameObject);
             bullet.Init(_owner,_moveDirection, _bulletEntityData.Speed, _bulletsPool);
             return bullet;
         }

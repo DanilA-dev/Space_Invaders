@@ -15,6 +15,9 @@ public class GameState
 {
     public ReactiveProperty<GameStateType> State = new ReactiveProperty<GameStateType>();
 
+    public bool IsLevelCreated { get; private set; }
+    
+    public event Action OnLevelStart;
     public event Action OnLevelRestarted;
     public event Action OnLevelInitialized;
 
@@ -22,7 +25,13 @@ public class GameState
     {
         State.Subscribe(_ => Debug.Log($"<color=yellow> Change state to {_} </color>"));
     }
-    
+
+    public void LevelStart()
+    {
+        OnLevelStart?.Invoke();
+        IsLevelCreated = true;
+    }
+
     public void RestartLevel() => OnLevelRestarted?.Invoke();
     public void InitializeLevel() => OnLevelInitialized?.Invoke();
 

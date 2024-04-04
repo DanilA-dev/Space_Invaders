@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player Bullet Data
   m_EditorClassIdentifier: 
   _entityPrefab: {fileID: -4107580596407175527, guid: 3d0c9504f19800f48910db6abca660da, type: 3}
-  <Speed>k__BackingField: 125
+  <Speed>k__BackingField: 175

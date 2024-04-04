@@ -1,39 +1,71 @@
-﻿using System.Collections.Generic;
-using Entity;
+﻿using System;
+using System.Collections;
+using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Core.Behaviours
 {
-    public class EnemiesMovementHandler : MonoBehaviour, IEnemiesMovementHandler
+    public class EnemiesMovementHandler : MonoBehaviour
     {
+        [SerializeField] private Transform _movingTransform;
+        [SerializeField] private float _speedIncreaseByTime;
         [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _moveDelay;
         [SerializeField] private float _yEndValue;
+
+        private Vector3 _startPos;
+        private GameState _gameState;
+        private float SpeedModfier => _speedIncreaseByTime * Time.deltaTime;
         
-        private List<EnemyEntity> _enemyEntities = new List<EnemyEntity>();
-
-        //Maybe move BaseUnit Position and then update the entity itself?
-        private void LateUpdate()
+        [Inject]
+        private void Construct(GameState gameState)
         {
-            if(_enemyEntities.Count <= 0)
-                return;
+            _gameState = gameState;
+            _gameState.State
+                .Where(state => state == GameStateType.Gameplay)
+                .Subscribe(_ => StartMoving()).AddTo(gameObject);
 
-            foreach (var enemyEntity in _enemyEntities)
+            _gameState.State
+                .Where(state => state == GameStateType.Menu)
+                .Subscribe(_ => _speedIncreaseByTime = 0).AddTo(gameObject);
+            
+            _gameState.OnLevelRestarted += () => _movingTransform.position = _startPos;
+        }
+
+        private void Awake()
+        {
+            _startPos = _movingTransform.position;
+        }
+
+        private void StartMoving()
+        {
+            StartCoroutine(MoveRoutine());
+        }
+
+        private IEnumerator MoveRoutine()
+        {
+            while (true)
             {
-                // var pos = Vector3.down * (_moveSpeed * Time.deltaTime);
-                // enemyEntity.transform.position = pos;
-                // enemyEntity.Unit.Position = pos;
+                _speedIncreaseByTime += Time.deltaTime;
+                CheckEndValue();
+                if(_gameState.State.Value != GameStateType.Gameplay)
+                    yield break;
+                
+                yield return new WaitForSeconds(_moveDelay);
+                MoveBlock();
             }
         }
-
-        public void AddEnemyEntity(EnemyEntity enemyEntity)
+        
+        private void CheckEndValue()
         {
-            if(!_enemyEntities.Contains(enemyEntity))
-                _enemyEntities.Add(enemyEntity);
+            if (_movingTransform.position.y <= _yEndValue)
+                _gameState.State.Value = GameStateType.LoseGame;
         }
 
-        private void Clear()
+        private void MoveBlock()
         {
-            _enemyEntities.Clear();
+            _movingTransform.Translate(Vector3.down * (Time.deltaTime * _moveSpeed + SpeedModfier));
         }
     }
 }

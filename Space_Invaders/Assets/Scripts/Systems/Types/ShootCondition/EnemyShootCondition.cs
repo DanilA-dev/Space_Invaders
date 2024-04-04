@@ -14,9 +14,13 @@ namespace Systems
             _ownerUnit = (EnemyUnit)ownerUnit;
         }
 
+        private bool IsPlayerSameXCoord() =>  Math.Abs(_playerUnit.Position.x - _ownerUnit.Position.x) < 0.1f;
+
+        private bool IsBelowEnemyDead() => _ownerUnit.BellowEnemy == null || _ownerUnit.BellowEnemy.IsDead;
+        
         public bool CanShoot()
         {
-            return Math.Abs(_playerUnit.Position.x - _ownerUnit.Position.x) < 0.1f;
+            return IsPlayerSameXCoord() && IsBelowEnemyDead();
         }
     }
 }

@@ -55,6 +55,19 @@ namespace Systems
             return unit;
         }
         
+        public List<T> GetUnits<T>() where T : BaseUnit
+        {
+            List<T> units = new List<T>();
+
+            foreach (var unit in _units)
+            {
+                if(unit is T)
+                    units.Add((T)unit);
+            }
+
+            return units;
+        }
+        
         private void OnMenuState()
         {
             _units.Clear();

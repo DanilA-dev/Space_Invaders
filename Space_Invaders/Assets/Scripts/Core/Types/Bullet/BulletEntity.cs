@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 
 namespace Entity
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class BulletEntity : BaseEntity
     {
         private Rigidbody2D _body2d;
