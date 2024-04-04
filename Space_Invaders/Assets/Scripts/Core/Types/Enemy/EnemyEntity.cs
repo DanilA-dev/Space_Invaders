@@ -33,7 +33,6 @@ namespace Entity
         protected override void OnUpdate()
         {
             _shootHandler?.OnUpdate();
-            TryDetectBelowUnit();
         }
 
 

@@ -25,11 +25,17 @@ namespace UI
             _gameState = gameState;
             _unitRegisterService = unitEntityRegisterService;
             _gameState.OnLevelInitialized += OnLevelInit;
-            _gameState.OnLevelRestarted += OnLevelInit;
+            _gameState.OnLevelRestarted += OnLevelRestart;
             
             _gameState.State
                 .Where(state => state == GameStateType.Menu)
                 .Subscribe(_ => ClearHealthItems()).AddTo(gameObject);
+        }
+
+        private void OnLevelRestart()
+        {
+            foreach (var healthItem in _healthItems)
+                healthItem.Show();
         }
 
         private void OnLevelInit()
@@ -50,12 +56,15 @@ namespace UI
         private PlayerUnit GetPlayerUnit()
         {
             var playerUnit = _unitRegisterService.GetUnit<PlayerUnit>();
-            playerUnit.CurrentHealth.Subscribe(_ => DamageHealthItems()).AddTo(gameObject);
+            playerUnit.CurrentHealth.Subscribe(_ => DamageHealthItems(_, playerUnit.MaxHealth)).AddTo(gameObject);
             return playerUnit;
         }
 
-        private void DamageHealthItems()
+        private void DamageHealthItems(int current, int max)
         {
+            if(current == max)
+                return;
+            
             if(_healthItems.Count <= 0)
                 return;
 
@@ -69,9 +78,8 @@ namespace UI
                 return;
 
             foreach (var healthItem in _healthItems)
-                Destroy(healthItem);
-            
-            _healthItems.Clear();
+                healthItem.Hide();
+             
         }
     }
 }

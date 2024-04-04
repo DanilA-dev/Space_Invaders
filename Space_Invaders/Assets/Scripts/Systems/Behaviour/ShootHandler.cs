@@ -20,12 +20,16 @@ namespace Systems.Behaviour
         private bool _isShooting;
         private DiContainer _diContainer;
         private IUnitEntityRegisterService _unitEntityRegisterService;
+        private GameState _gameState;
         
         [Inject]
-        private void Construct(IUnitEntityRegisterService unitEntityRegisterService,DiContainer diContainer)
+        private void Construct(IUnitEntityRegisterService unitEntityRegisterService,
+            DiContainer diContainer, GameState gameState)
         {
+            _gameState = gameState;
             _unitEntityRegisterService = unitEntityRegisterService;
             _diContainer = diContainer;
+            _gameState.OnLevelRestarted += () => _isShooting = false;
         }
         
         public void Init(BaseUnit owner)

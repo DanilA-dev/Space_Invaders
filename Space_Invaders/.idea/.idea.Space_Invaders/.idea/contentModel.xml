@@ -1464,6 +1464,7 @@
               <e p="BlasterCollectablesSpawner.cs" t="Include" />
               <e p="BulletEntitySpawner.cs" t="Include" />
               <e p="LevelHandler.cs" t="Include" />
+              <e p="PrefsPersistentDataService.cs" t="Include" />
               <e p="ScoreHandler.cs" t="Include" />
               <e p="ShootHandler.cs" t="Include" />
               <e p="UnitEntityRegisterService.cs" t="Include" />
@@ -1487,6 +1488,7 @@
             </e>
             <e p="Interfaces" t="Include">
               <e p="IInputProvider.cs" t="Include" />
+              <e p="ISavePersistentDataService.cs" t="Include" />
               <e p="IScoreHandler.cs" t="Include" />
               <e p="IShootCondition.cs" t="Include" />
               <e p="IUnitEntityRegisterService.cs" t="Include" />

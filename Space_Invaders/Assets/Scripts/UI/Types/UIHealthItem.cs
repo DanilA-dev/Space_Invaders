@@ -11,5 +11,11 @@ namespace UI
             IsHidden = true;
             gameObject.SetActive(false);
         }
+
+        public void Show()
+        {
+            IsHidden = false;
+            gameObject.SetActive(true);
+        }
     }
 }
