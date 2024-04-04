@@ -1,34 +1,51 @@
-﻿using System;
-using Systems.Behaviour;
+﻿using Systems;
 using Core.Interfaces;
 using Core.Model;
-using UnityEngine;
+using Zenject;
 
 namespace Entity
 {
-    public abstract class BaseUnitEntity : BaseEntity, IDamagable
+    public abstract class BaseUnitEntity<T> : BaseEntity, IDamagable where T : BaseUnit
     {
-        [SerializeField] private ShootHandler _shootHandler;
+        protected GameState _gameState;
+        private IUnitEntityRegisterService _unitRegisterService;
         
-        public event Action<BaseUnitEntity> OnDestroy;
-        public BaseUnit Unit { get; private set; }
+        public T Unit { get; private set; }
+        public BaseUnit UnitOwner => Unit;
+        
+        
 
+        [Inject]
+        private void Construct(GameState gameState, IUnitEntityRegisterService unitRegisterService)
+        {
+            _gameState = gameState;
+            _unitRegisterService = unitRegisterService;
+        }
 
-        public void Init(BaseUnit unit)
+        private void Update()
+        {
+            if(_gameState.State.Value != GameStateType.Gameplay)
+                return;
+            
+            OnUpdate();
+        }
+
+        public virtual void Init(T unit)
         {
             Unit = unit;
-            _shootHandler.Init(Unit);
         }
-        
+
+
         public void Damage(int damageValue)
         {
             Unit.CurrentHealth.Value -= damageValue;
             if (Unit.CurrentHealth.Value <= 0)
             {
+                _unitRegisterService.Deregister(Unit);
                 OnDestroyUnit();
-                OnDestroy?.Invoke(this);
             }
         }
-        protected virtual void OnDestroyUnit() =>  Destroy(gameObject);
+        protected virtual void OnDestroyUnit() {}
+        protected virtual void OnUpdate() {}
     }
 }

@@ -17,7 +17,8 @@ namespace Systems
         
         public IReadOnlyReactiveProperty<int> Value => _value;
 
-        public void ChangeScore(int value) => _value.Value += value;
+        public void AddScore(int value) => _value.Value += value;
+        public void SetScore(int value) => _value.Value = value;
 
     }
 }

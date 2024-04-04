@@ -232,7 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1afc34c340040a08f68bcb90e07046d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootHandler: {fileID: 7410971259076717}
 --- !u!114 &7410971259076717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,10 +244,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f01eb998a84ac6a4b594caa2b9a090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootOnInit: 0
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _shootCondition
+      Entry: 7
+      Data: 0|Systems.EnemyShootCondition, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
   _shootPos: {fileID: 5595698748916451776}
   _blasterData: {fileID: 11400000, guid: 1d6f0228c74815849a3bb4776696476c, type: 2}
-  _shootDirection: {x: 0, y: -1}
-  _bulletEntityData: {fileID: 11400000, guid: 8f5e27f116d80754ea1750cf728daf12, type: 2}
-  _bulletsCapacity: 10
-  _bulletsMaxSize: 30
+  _shootDirection: {x: 0, y: 1}
+  _bulletEntitySpawner:
+    _bulletEntityData: {fileID: 11400000, guid: 8f5e27f116d80754ea1750cf728daf12, type: 2}
+    _bulletsCapacity: 10
+    _bulletsMaxSize: 20

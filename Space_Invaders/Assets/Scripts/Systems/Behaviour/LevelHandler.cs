@@ -30,13 +30,15 @@ namespace Systems
                 .Where(s => s == GameStateType.Menu)
                 .Subscribe(_ => ClearLevel()).AddTo(gameObject);
             
-            _gameState.OnGameRestarted += CreateLevel;
+            _gameState.OnLevelRestarted += CreateLevel;
         }
 
         private void CreateLevel()
         {
+            ClearLevel();
             CreatePlayer();
             CreateEnemies();
+            _gameState.InitializeLevel();
         }
 
         private void CreateEnemies()
@@ -46,7 +48,7 @@ namespace Systems
                 for (int y = 0; y < _y; y++)
                 {
                     var pos = _grid.GetCellCenterWorld(new Vector3Int(x, y));
-                    _unitEntitySpawner.SpawnEnemy((EnemyType)y, pos);
+                    var enemy = _unitEntitySpawner.SpawnEnemy((EnemyType)y, pos);
                 }
             }
         }
@@ -58,8 +60,8 @@ namespace Systems
 
         private void ClearLevel()
         {
-            //Clear player
-            //Clear enemies
+            _unitEntitySpawner.DespawnPlayer();
+            _unitEntitySpawner.DespawnEnemies();
         }
     }
 }

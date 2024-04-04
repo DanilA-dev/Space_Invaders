@@ -15,15 +15,16 @@ public class GameState
 {
     public ReactiveProperty<GameStateType> State = new ReactiveProperty<GameStateType>();
 
-    public event Action OnGameRestarted;
+    public event Action OnLevelRestarted;
+    public event Action OnLevelInitialized;
 
     public GameState()
     {
         State.Subscribe(_ => Debug.Log($"<color=yellow> Change state to {_} </color>"));
     }
-    public void RestartLevel()
-    {
-        OnGameRestarted?.Invoke();
-    }
     
+    public void RestartLevel() => OnLevelRestarted?.Invoke();
+    public void InitializeLevel() => OnLevelInitialized?.Invoke();
+
+
 }

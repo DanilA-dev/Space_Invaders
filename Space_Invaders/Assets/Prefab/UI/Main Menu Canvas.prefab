@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 128.5}
+  m_AnchoredPosition: {x: 0, y: 384.5}
   m_SizeDelta: {x: 1601.7, y: 257}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2786432667645548896
@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 5683616026283569749}
   - component: {fileID: 5321623363986732780}
   - component: {fileID: 5935967046814585175}
+  - component: {fileID: 8424442555250050883}
   m_Layer: 5
   m_Name: Best ScoreText
   m_TagString: Untagged
@@ -305,7 +306,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Best score : 9999'
+  m_text: 1000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -374,6 +375,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8424442555250050883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756394408563836761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115a649779e945c393058d69baf3286b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _label: Best score
+  _scoreText: {fileID: 5935967046814585175}
+  _scoreType: 1
 --- !u!1 &3435846104339951260
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7273946468488623543
 RectTransform:
   m_ObjectHideFlags: 0
@@ -759,4 +775,4 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55

@@ -23,12 +23,18 @@ namespace Entity
         }
         
         private void Awake() =>  _body2d = GetComponent<Rigidbody2D>();
-        private void FixedUpdate() =>  _body2d.MovePosition(_direction * (_speed * Time.fixedDeltaTime));
+        private void FixedUpdate() =>  _body2d.velocity = -_direction * (Time.fixedDeltaTime * _speed);
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
+            if(other.TryGetComponent(out BulletBlocker blocker))
+                _pool?.Release(this);
+            
             if (other.gameObject.TryGetComponent(out IDamagable damagable))
             {
+                if(_owner == damagable.UnitOwner)
+                    return;
+                
                 damagable?.Damage(_owner.Damage);
                 _pool?.Release(this);
             }

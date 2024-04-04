@@ -13,5 +13,6 @@ namespace Data
     public class EnemyEntityData : UnitEntityData
     {
         [field:SerializeField] public EnemyType Type { get; private set; }
+        [field: SerializeField] public int Score { get; private set; }
     }
 }

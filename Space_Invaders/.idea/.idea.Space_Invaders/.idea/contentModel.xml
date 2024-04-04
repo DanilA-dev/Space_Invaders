@@ -43,7 +43,9 @@
           </e>
         </e>
         <e p="Data" t="Include">
+          <e p="Blasters" t="Include" />
           <e p="Entities" t="Include">
+            <e p="Bullets" t="Include" />
             <e p="Enemies" t="Include" />
             <e p="Player" t="Include" />
           </e>
@@ -66,6 +68,41 @@
               </e>
               <e p="ReadMe.txt" t="Include" />
             </e>
+          </e>
+          <e p="Sirenix" t="Include">
+            <e p="Assemblies" t="Include">
+              <e p="link.xml" t="Include" />
+              <e p="NoEditor" t="Include" />
+              <e p="NoEmitAndNoEditor" t="Include" />
+              <e p="Sirenix.OdinInspector.Attributes.xml" t="Include" />
+              <e p="Sirenix.OdinInspector.Editor.xml" t="Include" />
+              <e p="Sirenix.Serialization.Config.xml" t="Include" />
+              <e p="Sirenix.Serialization.xml" t="Include" />
+              <e p="Sirenix.Utilities.Editor.xml" t="Include" />
+              <e p="Sirenix.Utilities.xml" t="Include" />
+            </e>
+            <e p="Demos" t="Include" />
+            <e p="Odin Inspector" t="Include">
+              <e p="Assets" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="Bootstrap License.txt" t="Include" />
+                </e>
+              </e>
+              <e p="Config" t="Include">
+                <e p="Editor" t="Include" />
+                <e p="Resources" t="Include">
+                  <e p="Sirenix" t="Include" />
+                </e>
+              </e>
+              <e p="Modules" t="Include">
+                <e p="Unity.Mathematics" t="Include">
+                  <e p="manifest.txt" t="Include" />
+                  <e p="MathematicsDrawers.cs" t="Include" />
+                  <e p="Sirenix.OdinInspector.Modules.UnityMathematics.asmdef" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="ReadMe.txt" t="Include" />
           </e>
           <e p="UniRx" t="Include">
             <e p="Examples" t="Include">
@@ -1362,24 +1399,29 @@
         <e p="Scripts" t="Include">
           <e p="Core" t="Include">
             <e p="Behaviours" t="Include">
+              <e p="EnemiesMovementHandler.cs" t="Include" />
+              <e p="InputMovementHandler.cs" t="Include" />
               <e p="MovementRestrictions.cs" t="Include" />
-              <e p="PlayerMovementHandler.cs" t="Include" />
             </e>
             <e p="Interfaces" t="Include">
               <e p="IDamagable.cs" t="Include" />
+              <e p="IEnemiesMovementHandler.cs" t="Include" />
             </e>
             <e p="Model" t="Include">
               <e p="BaseUnit.cs" t="Include" />
               <e p="EnemyUnit.cs" t="Include" />
               <e p="PlayerUnit.cs" t="Include" />
             </e>
-            <e p="Signals" t="Include" />
+            <e p="Signals" t="Include">
+              <e p="AddScoreSignal.cs" t="Include" />
+            </e>
             <e p="Types" t="Include">
               <e p="BaseEntity.cs" t="Include" />
               <e p="BaseUnitEntity.cs" t="Include" />
               <e p="Bullet" t="Include">
                 <e p="BulletEntity.cs" t="Include" />
               </e>
+              <e p="BulletBlocker.cs" t="Include" />
               <e p="Enemy" t="Include">
                 <e p="EnemyEntity.cs" t="Include" />
               </e>
@@ -1408,9 +1450,11 @@
           <e p="Systems" t="Include">
             <e p="AppStart.cs" t="Include" />
             <e p="Behaviour" t="Include">
+              <e p="BulletEntitySpawner.cs" t="Include" />
               <e p="LevelHandler.cs" t="Include" />
               <e p="ScoreHandler.cs" t="Include" />
               <e p="ShootHandler.cs" t="Include" />
+              <e p="UnitEntityRegisterService.cs" t="Include" />
               <e p="UnitEntitySpawner.cs" t="Include" />
             </e>
             <e p="Factories" t="Include">
@@ -1426,16 +1470,23 @@
             <e p="Interfaces" t="Include">
               <e p="IInputProvider.cs" t="Include" />
               <e p="IScoreHandler.cs" t="Include" />
+              <e p="IShootCondition.cs" t="Include" />
+              <e p="IUnitEntityRegisterService.cs" t="Include" />
               <e p="IUnitEntitySpawner.cs" t="Include" />
             </e>
             <e p="Types" t="Include">
               <e p="MobileJoystickInput.cs" t="Include" />
               <e p="Score.cs" t="Include" />
+              <e p="ShootCondition" t="Include">
+                <e p="EnemyShootCondition.cs" t="Include" />
+                <e p="PlayerShootCondition.cs" t="Include" />
+              </e>
             </e>
           </e>
           <e p="UI" t="Include">
             <e p="Behaviours" t="Include">
               <e p="MenuSwitcher.cs" t="Include" />
+              <e p="UIHealthContent.cs" t="Include" />
             </e>
             <e p="Types" t="Include">
               <e p="Menus" t="Include">
@@ -1445,6 +1496,7 @@
                 <e p="MainMenu.cs" t="Include" />
                 <e p="PauseMenu.cs" t="Include" />
               </e>
+              <e p="UIHealthItem.cs" t="Include" />
               <e p="UIScoreView.cs" t="Include" />
             </e>
           </e>
@@ -9425,6 +9477,7 @@
       <e p="PPv2URPConverters.csproj" t="IncludeRecursive" />
       <e p="PsdPlugin.csproj" t="IncludeRecursive" />
       <e p="SeparateAssembly.csproj" t="IncludeRecursive" />
+      <e p="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" t="IncludeRecursive" />
       <e p="Space_Invaders.sln" t="IncludeFlat" />
       <e p="Temp\Bin" t="ExcludeRecursive" />
       <e p="UniRx.csproj" t="IncludeRecursive" />

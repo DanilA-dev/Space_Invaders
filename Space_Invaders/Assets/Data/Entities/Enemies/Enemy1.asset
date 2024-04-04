@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Enemy1
   m_EditorClassIdentifier: 
   _entityPrefab: {fileID: 5229057541037952184, guid: 3c77961136c395740af2fd0bcd7e90c3, type: 3}
-  <MaxHealth>k__BackingField: 1
+  <MaxHealth>k__BackingField: 2
   <Damage>k__BackingField: 1
   <Type>k__BackingField: 0
+  <Score>k__BackingField: 50

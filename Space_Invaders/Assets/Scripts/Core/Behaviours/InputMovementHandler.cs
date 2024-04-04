@@ -1,9 +1,9 @@
 using Systems;
-using Entity;
+using Core.Model;
 using UnityEngine;
 using Zenject;
 
-public class PlayerMovementHandler : MonoBehaviour
+public class InputMovementHandler : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private MovementRestrictions _movementRestrictions;
@@ -29,24 +29,19 @@ public class PlayerMovementHandler : MonoBehaviour
     {
         _input.GetInputDirection -= UpdateMoveDirection;
     }
-
-    private void LateUpdate()
-    {
-        Move();
-    }
-
+   
     private void UpdateMoveDirection(Vector2 dir)
     {
         _moveDirection = dir;
     }
-
     
-    private void Move()
+    public void Move(ref PlayerUnit unit)
     {
         var dir = _transform.position;
         var clampedDir = _movementRestrictions.GetRestrictedDirection(dir);
         Vector3 movementDir = _moveDirection * (_speed * Time.deltaTime);
         _transform.position = movementDir + clampedDir;
+        unit.Position = _transform.position;
     }
         
 }

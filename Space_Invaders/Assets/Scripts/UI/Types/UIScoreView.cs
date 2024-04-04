@@ -8,6 +8,7 @@ namespace UI
 {
     public class UIScoreView : MonoBehaviour
     {
+        [SerializeField] private string _label;
         [SerializeField] private TMP_Text _scoreText;
         [SerializeField] private ScoreType _scoreType;
         
@@ -20,7 +21,7 @@ namespace UI
             _score.Value.Subscribe(UpdateScore).AddTo(gameObject);
         }
 
-        private void UpdateScore(int score) => _scoreText?.SetText(score.ToString());
+        private void UpdateScore(int score) => _scoreText?.SetText(_label + " " + score);
 
     }
 }
